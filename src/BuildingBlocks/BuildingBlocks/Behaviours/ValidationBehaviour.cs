@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace BuildingBlocks.Behaviours
 {
     public class ValidationBehaviour<TRequest, TResponse> (IEnumerable<IValidator<TRequest>> validators)
-        : IPipelineBehavior<TRequest, TResponse> where TRequest: ICommand
+        : IPipelineBehavior<TRequest, TResponse> where TRequest: ICommand<TResponse>
     {
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
@@ -21,6 +21,10 @@ namespace BuildingBlocks.Behaviours
             var failuers = validationResults.Where(r => r.Errors.Any())
                                             .SelectMany(r => r.Errors)
                                             .ToList();
+
+            if (failuers.Any()) {
+                throw new ValidationException(failuers);
+            }
 
             return await next();
 
