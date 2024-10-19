@@ -14,7 +14,7 @@ namespace BuildingBlocks.Exceptions
 
         }
 
-        public InternalServerException(string name, string details) : base(details)
+        public InternalServerException(string message, string details) : base(message)
         {
             Details = details;
         }
