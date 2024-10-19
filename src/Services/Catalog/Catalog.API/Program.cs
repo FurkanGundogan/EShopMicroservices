@@ -1,10 +1,3 @@
-
-
-using BuildingBlocks.Behaviours;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using System.Reflection;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
@@ -27,13 +20,20 @@ builder.Services.AddMarten(opts => {
     opts.Connection(builder.Configuration.GetConnectionString("Database")!);
 }).UseLightweightSessions();
 
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
 app.MapCarter(); // scan all code for ICarterModules and mapPost methods
 
 // Global exception handling
+app.UseExceptionHandler(options => { });
 
+
+
+#region old exception handler
+/*
 app.UseExceptionHandler(excepationHandlerApp => {
 
     excepationHandlerApp.Run(async context => {
@@ -59,6 +59,7 @@ app.UseExceptionHandler(excepationHandlerApp => {
     });
 
 });
-
+*/
+#endregion
 app.Run();
 

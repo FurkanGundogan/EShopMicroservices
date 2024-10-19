@@ -69,7 +69,8 @@ namespace BuildingBlocks.Exceptions.Handler
             await context.Response.WriteAsJsonAsync(problemDetails, cancellationToken: cancellationToken);
 
 
-            throw new NotImplementedException();
+            
+            return true;
         }
     }
 }
