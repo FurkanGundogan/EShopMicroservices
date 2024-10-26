@@ -19,12 +19,12 @@
     ///  IDocumentSession is abstraction of db operations
 
     internal class CreateProductCommandHandler 
-        (IDocumentSession session, ILogger<CreateProductCommandHandler> logger)
+        (IDocumentSession session)
         : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
         public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
         {
-            logger.LogInformation("CreateProductCommandHandler.Handle called whith {@Command}", command);
+           
 
             // Business login to create product
 
