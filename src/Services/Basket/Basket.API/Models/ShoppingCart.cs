@@ -3,8 +3,8 @@
     public class ShoppingCart
     {
         public string UserName { get; set; } = default;
-        public List<ShoppingCartItem> Items { get; set; }
-        public decimal TotalPrice => Items.Sum(x => x.Price * x.Quantity);
+        public List<ShoppingCartItem> Items { get; set; } = new List<ShoppingCartItem>();
+        public decimal TotalPrice => Items?.Sum(x => x.Price * x.Quantity) ?? 0;
 
         public ShoppingCart(string userName)
         {

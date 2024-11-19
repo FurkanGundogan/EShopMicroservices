@@ -9,7 +9,7 @@
         {
             // TODO: get basket from db
             // var basket = _repository.GetBasket(request.UserName);
-            return new GetBasketResult(new ShoppingCart("TestCart"));
+            return new GetBasketResult(new ShoppingCart("swn"));
         }
     }
 }
