@@ -1,10 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ordering.Infrastructure;
 
@@ -15,6 +10,9 @@ public static class DependencyInjection
     {
         var connectionString = configuration.GetConnectionString("Database");
         // register sqlserver
+        services.AddDbContext<ApplicationDbContext>(opt =>
+        opt.UseSqlServer(connectionString));
+
         // addscope application dbcontext
         return services;
     }
