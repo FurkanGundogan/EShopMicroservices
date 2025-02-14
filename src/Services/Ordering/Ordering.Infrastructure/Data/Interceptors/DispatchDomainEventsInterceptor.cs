@@ -31,6 +31,8 @@ public class DispatchDomainEventsInterceptor(IMediator mediator)
 
         foreach (var domainEvent in domainEvents)
         {
+            // mediatr expects INotification, which is IDomainEvent
+            // events gonna handle in application layer
             await mediator.Publish(domainEvent);
         }
 
