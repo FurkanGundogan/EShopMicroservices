@@ -33,8 +33,4 @@
     </Protobuf>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Basket\CheckoutBasket\" />
-  </ItemGroup>
-
 </Project>
