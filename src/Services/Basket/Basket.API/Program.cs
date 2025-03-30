@@ -1,4 +1,5 @@
 using BuildingBlocks.Exceptions.Handler;
+using BuildingBlocks.Messaging.MassTransit;
 using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -57,6 +58,10 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
     };
     return handler;
 });
+
+// Async comm Services
+builder.Services.AddMessageBroker(builder.Configuration);
+/// this service is a publisher. so it does not send assembly parameter to AddMessageBroker
 
 
 // Cross-Cutting Services
