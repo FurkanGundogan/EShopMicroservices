@@ -11,8 +11,17 @@ namespace Shopping.Web.Pages
             // assumption customerId is passed in from the UI authenticated user swn
             var customerId = new Guid("58c49479-ec65-4de2-86e7-033c546291aa");
 
-            var response = await orderingService.GetOrdersByCustomer(customerId);
-            Orders = response.Orders;
+            try
+            {
+                var response = await orderingService.GetOrdersByCustomer(customerId);
+                Orders = response?.Orders;
+            }
+            catch (Exception ex)
+            {
+
+                
+            }
+            
 
             return Page();
         }

@@ -22,7 +22,7 @@ public static class DatabaseExtensions
     {
         await SeedCustomerAsync(context);
         await SeedProductAsync(context);
-        await SeedOrderandItemsAsync(context);
+        //await SeedOrderandItemsAsync(context);
     }
 
     public static async Task SeedCustomerAsync(ApplicationDbContext context)

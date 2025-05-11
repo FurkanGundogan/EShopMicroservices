@@ -37,19 +37,24 @@
                     </thead>
                     <tbody>
 
-                        @foreach (var order in Model.Orders)
+                        @if (Model?.Orders != null)
                         {
-                            <tr>
-                                <td><img src="https://dummyimage.com/50x50/55595c/fff" /></td>
-                                <td>@order.OrderName</td>
-                                <td>@order.ShippingAddress.FirstName</td>
-                                <td>@order.ShippingAddress.LastName</td>
-                                <td>@order.ShippingAddress.EmailAddress</td>
-                                <td>@order.ShippingAddress.AddressLine</td>
-                                <td>@order.Payment.CardName</td>
-                                <td>@order.Status</td>
-                                <td class="text-right">@order.OrderItems.Sum(x => x.Price * x.Quantity) $</td>
-                            </tr>
+                            foreach (var order in Model.Orders)
+                            {
+                                <tr>
+                                    <td><img src="https://dummyimage.com/50x50/55595c/fff" /></td>
+                                    <td>@order?.OrderName</td>
+                                    <td>@order?.ShippingAddress?.FirstName</td>
+                                    <td>@order?.ShippingAddress?.LastName</td>
+                                    <td>@order?.ShippingAddress?.EmailAddress</td>
+                                    <td>@order?.ShippingAddress?.AddressLine</td>
+                                    <td>@order?.Payment?.CardName</td>
+                                    <td>@order?.Status</td>
+                                    <td class="text-right">
+                                        @(order?.OrderItems?.Sum(x => x.Price * x.Quantity) ?? 0) $
+                                    </td>
+                                </tr>
+                            }
                         }
                     </tbody>
                 </table>
